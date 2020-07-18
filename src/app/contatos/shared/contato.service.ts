@@ -32,7 +32,7 @@ export class ContatoService {
       .snapshotChanges()
       .pipe(
         map(changes => {
-          return changes.map(data => ({ key: data.payload.key, ...data.payload.exportVal() }));
+          return changes.map(data => ({ key: data.payload.key, ...data.payload.val() as {} }));
         })
       );
   }
