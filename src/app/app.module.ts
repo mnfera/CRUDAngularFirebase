@@ -7,10 +7,12 @@ import { AppComponent } from './app.component';
 
 import { environment } from './../environments/environment';
 
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { EditComponent } from './contatos/edit/edit.component';
 import { ListComponent } from './contatos/list/list.component';
+import { AuthService } from './contatos/shared/auth.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,10 @@ import { ListComponent } from './contatos/list/list.component';
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

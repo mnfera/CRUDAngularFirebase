@@ -1,4 +1,4 @@
-import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Contato } from './contato';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';

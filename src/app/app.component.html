@@ -1,7 +1,41 @@
-<div class="container jumbotron">
+<div *ngIf="authService.user | async" class="container jumbotron">
+  <h1>Bem-vindo, {{ (authService.user | async)?.email }}!</h1>
   <app-edit></app-edit>
   <app-list></app-list>
 </div>
+
+<div id="login" *ngIf="!(authService.user | async)">
+  <div class="container">
+      <div id="login-row" class="row justify-content-center align-items-center">
+          <div id="login-column" class="col-md-6">
+              <div id="login-box" class="col-md-12">
+                  <form id="login-form" class="form" action="" method="post">
+                      <h3 class="text-center text-info">Login</h3>
+                      <div class="form-group">
+                          <label for="username" class="text-info">E-mail:</label><br>
+                          <input type="text" [(ngModel)]="email" name="username" id="username" class="form-control">
+                      </div>
+                      <div class="form-group">
+                          <label for="password" class="text-info">Senha:</label><br>
+                          <input type="password" [(ngModel)]="password" name="password" id="password" class="form-control">
+                      </div>
+                      <div class="form-group">
+                          <label for="remember-me" class="text-info"><span>Lembrar-me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                          <input (click)="login()" [disabled]="!email || !password" type="submit" name="submit" class="btn btn-info btn-md" value="Entrar">
+                      </div>
+                      <div id="register-link" class="text-right">
+                          <input (click)="signup()" [disabled]="!email || !password" type="submit" name="signup" class="text-info" value="Cadastrar-se">
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<button (click)="logout()" *ngIf="authService.user | async">
+  Deslogar
+</button>
 
 <footer class="mt-2 p-2 text-center">
   <a href="https://www.linkedin.com/in/mikael-nilton-de-araujo-0935bbb1/">Mikael Nilton</a>
